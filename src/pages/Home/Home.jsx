@@ -7,13 +7,11 @@ import DisplayShoes from '../../components/DisplayShoes/DisplayShoes'
 
 const Home = () => {
 
-  const [category, setCategory] = useState("All")
-
   return (
     <>
       <ShoesCarousel />
-      <ExploreCategories setCategory={setCategory} category={category} />
-      <DisplayShoes category={category} />
+      <ExploreCategories />
+      <DisplayShoes />
       <AppDownload />
     </>
   )

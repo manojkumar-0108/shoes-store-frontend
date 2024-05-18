@@ -71,12 +71,14 @@ const PlaceOrder = () => {
                 const session_url = response.data.data;
                 window.location.replace(session_url);
             } else {
+                console.log("Error : ", response.data);
                 toast.error(response.data.message);
             }
         } catch (error) {
+            console.log("Error : ", error);
             toast.error('An error occurred while placing the order. Please try again.');
         } finally {
-            // setIsLoading(false); // Stop loading
+            setIsLoading(false); // Stop loading
         }
     };
 

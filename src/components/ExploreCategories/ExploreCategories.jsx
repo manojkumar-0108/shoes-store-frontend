@@ -2,9 +2,9 @@ import { useContext } from 'react'
 import './ExploreCategories.css'
 import { StoreContext } from '../../context/StoreContext'
 
-const ExploreCategories = ({ category, setCategory }) => {
+const ExploreCategories = () => {
 
-  const { shoesCategories } = useContext(StoreContext);
+  const { shoesCategories, category, setCategory } = useContext(StoreContext);
 
   return (
     <div className='explore-menu' id='explore-categories'>

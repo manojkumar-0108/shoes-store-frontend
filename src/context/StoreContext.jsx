@@ -11,7 +11,8 @@ const StoreContextProvider = (props) => {
 
     const [shoes, setShoes] = useState([]);
     const [cartItems, setCartItems] = useState({});
-    const [token, setToken] = useState("")
+    const [token, setToken] = useState("");
+    const [category, setCategory] = useState("All")
 
 
     const addToCart = async (itemId) => {
@@ -81,7 +82,9 @@ const StoreContextProvider = (props) => {
         token,
         setToken,
         loadCartData,
-        setCartItems
+        setCartItems,
+        category,
+        setCategory
     };
 
     return (

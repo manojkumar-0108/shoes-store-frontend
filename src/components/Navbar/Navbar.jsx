@@ -16,10 +16,11 @@ import { FiBox } from "react-icons/fi";
 const Navbar = ({ setShowLogin }) => {
 
   const [menu, setMenu] = useState("home");
-  const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const { getTotalCartAmount, token, setToken, setCategory } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const handleMenuClick = (menu, path) => {
+    setCategory("All")
     setMenu(menu);
     navigate(`/${path}`);
   };
@@ -34,8 +35,13 @@ const Navbar = ({ setShowLogin }) => {
   return (
     <div className='navbar'>
 
-      <Link to='/'>
-        <h1 className='shop-title'>inShop</h1>
+      <Link
+        to='/'
+        onClick={() => handleMenuClick("home", '')}
+      >
+        <h1 className='shop-title'>
+          inShop
+        </h1>
       </Link>
 
       <ul className="navbar-menu">

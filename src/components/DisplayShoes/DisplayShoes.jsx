@@ -4,13 +4,13 @@ import { useContext } from 'react'
 import { StoreContext } from '../../context/StoreContext'
 import Wrapper from './Wrapper';
 import ProductCard from './ProductCard';
-import { assets } from '../../assets/';
 
 
 
-const DisplayShoes = ({ category }) => {
 
-  const { shoes } = useContext(StoreContext);
+const DisplayShoes = () => {
+
+  const { shoes, category } = useContext(StoreContext);
 
   return (
     <div>
