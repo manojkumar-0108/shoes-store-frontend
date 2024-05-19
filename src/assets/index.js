@@ -1,7 +1,7 @@
 
 import images from './images/index';
 
-export const BACKEND_BASE_URL = 'http://localhost:4000'
+export const BACKEND_BASE_URL = 'http://3.90.217.214:4000/'
 
 export const assets = {
     images,
