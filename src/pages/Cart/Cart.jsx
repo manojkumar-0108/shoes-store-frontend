@@ -3,8 +3,6 @@ import './Cart.css'
 import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom';
 
-import { API_END_POINTS } from '../../assets';
-
 import currencyFormatter from '../../helpers/currency.formatter';
 import { IconContext } from "react-icons";
 import { MdDeleteForever } from "react-icons/md";
@@ -26,7 +24,7 @@ const Cart = () => {
           if (cartItems[item.id] > 0) {
             return (<div key={index}>
               <div className="cart-items-title cart-items-item">
-                <img src={API_END_POINTS.IMAGES + '/' + item.image} alt="" />
+                <img src={item.image} alt="" />
                 <p>{item.name}</p>
                 <p>{currencyFormatter(item.price)}</p>
                 <div>{cartItems[item.id]}</div>

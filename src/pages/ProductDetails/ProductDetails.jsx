@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import Wrapper from "./Wrapper";
 import { StoreContext } from '../../context/StoreContext';
 import currencyFormatter from '../../helpers/currency.formatter';
-import { API_END_POINTS } from "../../assets";
 
 function ProductDetails() {
 
@@ -30,7 +29,7 @@ function ProductDetails() {
                                     <div className="w-full max-h-[550px] md:w-auto flex-[1.5] max-w-[500px] lg:max-w-full mx-auto lg:mx-0">
                                         <img
                                             className="w-full h-full object-cover object-center rounded-md"
-                                            src={API_END_POINTS.IMAGES + '/' + shoe.image}
+                                            src={shoe.image}
                                             alt={shoe.name}
                                         />
 

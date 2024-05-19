@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { StoreContext } from "../../context/StoreContext";
 
-import { API_END_POINTS } from "../../assets";
 import images from "../../assets/images";
 const { addIconGreen, addIconWhite, removeIconRed } = images;
 
@@ -26,7 +25,7 @@ const ProductCard = ({ data }) => {
             <div className="relative w-full mx-auto h-[300px]">
                 <img
                     className="w-full h-full object-cover object-center"
-                    src={API_END_POINTS.IMAGES + '/' + image}
+                    src={image}
                     alt={name}
                 />
 

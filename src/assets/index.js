@@ -9,7 +9,6 @@ export const assets = {
 
 export const API_END_POINTS = {
     SHOES: '/api/frontend/shoes',
-    IMAGES: 'http://localhost:4000/api/frontend/images',
     USERS: '/api/frontend/users',
     CARTS: '/api/frontend/carts',
     ORDERS: '/api/frontend/orders'
