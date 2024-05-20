@@ -16,10 +16,15 @@ const MyOrders = () => {
   const { token } = useContext(StoreContext);
 
   const fetchOrders = async () => {
-    const response = await axiosInstance.get(
-      `${API_END_POINTS.ORDERS}`,
-      { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
-    setData(response.data.data)
+
+    try {
+      const response = await axiosInstance.get(
+        `${API_END_POINTS.ORDERS}`,
+        { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
+      setData(response.data.data)
+    } catch (error) {
+      console.log("Error : ", error);
+    }
   }
 
   useEffect(() => {

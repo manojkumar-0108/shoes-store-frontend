@@ -58,8 +58,6 @@ const PlaceOrder = () => {
             amount: getTotalCartAmount() + 5,
         };
 
-        console.log(orderData);
-
         try {
             let response = await axiosInstance.post(
                 `${API_END_POINTS.ORDERS}`,
@@ -76,7 +74,7 @@ const PlaceOrder = () => {
             }
         } catch (error) {
             console.log("Error : ", error);
-            toast.error('An error occurred while placing the order. Please try again.');
+            toast.error('An error occurred while placing the order.');
         } finally {
             setIsLoading(false); // Stop loading
         }

@@ -36,27 +36,29 @@ const LoginPopup = ({ setShowLogin }) => {
     const onLogin = async (e) => {
         e.preventDefault()
 
-        let newURL = USERS;
-        if (currState === "Login") {
-            newURL += "/login";
-        }
-        else {
-            newURL += "/register"
-        }
-        const response = await axiosInstance.post(newURL, data);
+        try {
+            let newURL = USERS;
+            if (currState === "Login") {
+                newURL += "/login";
+            }
+            else {
+                newURL += "/register"
+            }
+            const response = await axiosInstance.post(newURL, data);
 
-        console.log('Login Response : ', response);
-
-        if (response.data.success) {
-            setToken(response.data.data);
-            localStorage.setItem("token", response.data.data);
-            loadCartData({ token: response.data.data });
-            setShowLogin(false);
-            navigate('/', { replace: true });
-            window.location.reload();
-        }
-        else {
-            toast.error(response.data.message)
+            if (response.data.success) {
+                setToken(response.data.data);
+                localStorage.setItem("token", response.data.data);
+                loadCartData({ token: response.data.data });
+                setShowLogin(false);
+                navigate('/', { replace: true });
+                window.location.reload();
+            }
+            else {
+                toast.error(response.data.message)
+            }
+        } catch (error) {
+            console.log(error);
         }
     }
 

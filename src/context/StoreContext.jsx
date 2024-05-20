@@ -23,17 +23,28 @@ const StoreContextProvider = (props) => {
             setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
         }
         if (token) {
-            await axiosInstance.post(
-                `${CARTS}/products/${itemId}`,
-                {},
-                { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
+            try {
+                await axiosInstance.post(
+                    `${CARTS}/products/${itemId}`,
+                    {},
+                    { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
+            } catch (error) {
+                console.log("Error : ", error);
+            }
+
         }
     }
 
     const removeFromCart = async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
         if (token) {
-            await axiosInstance.delete(`${CARTS}/products/${itemId}`, { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
+
+            try {
+                await axiosInstance.delete(`${CARTS}/products/${itemId}`, { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
+            } catch (error) {
+                console.log("Error : ", error);
+            }
+
         }
     }
 
@@ -50,15 +61,24 @@ const StoreContextProvider = (props) => {
     }
 
     const fetchShoesList = async () => {
-        const response = await axiosInstance.get(`${SHOES}`, {});
-        setShoes(response.data.data)
+
+        try {
+            const response = await axiosInstance.get(`${SHOES}`, {});
+            setShoes(response.data.data)
+        } catch (error) {
+            console.log("Error : ", error);
+        }
+
     }
 
     const loadCartData = async (token) => {
-        const response = await axiosInstance.get(`${CARTS}/products`, { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
 
-        console.log('Cart Data', response.data.data);
-        setCartItems(response.data.data);
+        try {
+            const response = await axiosInstance.get(`${CARTS}/products`, { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
+            setCartItems(response.data.data);
+        } catch (error) {
+            console.log("Error : ", error);
+        }
     }
 
     useEffect(() => {
