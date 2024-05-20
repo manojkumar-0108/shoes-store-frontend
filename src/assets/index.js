@@ -1,7 +1,7 @@
 
 import images from './images/index';
 
-export const BACKEND_BASE_URL = 'http://13.201.77.73'
+export const BACKEND_BASE_URL = 'https://shoes-store-server.onrender.com/'
 
 export const assets = {
     images,
