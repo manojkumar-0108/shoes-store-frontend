@@ -2,6 +2,11 @@
 
 **`Live Preview`** : https://shoes-store-frontend.onrender.com/
 
+- DUMMY ACCOUNT:
+
+        Email : demo@gmail.com
+        Password: 123456
+
 ## Key Highlights
 
 🔑 **Login & Registration**
