@@ -7,6 +7,12 @@
         Email : demo@gmail.com
         Password: 123456
 
+- DUMMY CREDIT CARD:
+
+         Card Number: 4000 0035 6000 0008
+         Expiry : 01/26
+         CVV: 123
+
 ## Key Highlights
 
 🔑 **Login & Registration**
