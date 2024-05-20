@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { StoreContext } from '../../context/StoreContext';
 import Wrapper from './Wrapper';
 import ProductCard from './ProductCard';
@@ -7,7 +7,6 @@ const DisplayShoes = () => {
   const { shoes, category } = useContext(StoreContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(9); // Change this value as needed
-  const [numPaginationButtons, setNumPaginationButtons] = useState(5); // Adjust the number of buttons for different screen sizes
 
   useEffect(() => {
     setCurrentPage(1); // Reset current page whenever category changes
@@ -19,23 +18,18 @@ const DisplayShoes = () => {
   }, [category]);
 
   const updateNumPaginationButtons = () => {
-    // Adjust the number of pagination buttons based on screen width
     if (window.innerWidth < 768) {
       setItemsPerPage(3);
-      // setNumPaginationButtons(3);
     } else if (window.innerWidth < 1024) {
       setItemsPerPage(6);
-      // setNumPaginationButtons(5);
     } else {
       setItemsPerPage(12)
-      // setNumPaginationButtons(7);
     }
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = shoes
-    ?.filter(product => category === "All" || category === product.category)
+  const currentItems = shoes.filter(product => category === "All" || category === product.category)
     .slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -43,6 +37,7 @@ const DisplayShoes = () => {
   return (
     <div>
       <Wrapper>
+
         {/* heading and paragraph start */}
         <div className="text-center max-w-[800px] mx-auto my-[50px] md:my-[80px]">
           <div className="text-[28px] md:text-[34px] mb-5 font-semibold leading-tight">
@@ -54,19 +49,24 @@ const DisplayShoes = () => {
             during extended stretches of running.
           </div>
         </div>
-        {/* heading and paragraph end */}
+
+
         {/* products grid start */}
         <div className="grid grid-cols-1 md:grid-cols- lg:grid-cols-4 gap-5 my-14 px-5 md:px-0">
           {currentItems.map((product) => (
             <ProductCard key={product.id} data={product} />
           ))}
         </div>
+
+
         {/* pagination controls */}
         <div className="flex justify-center my-5">
           {[...Array(Math.ceil(shoes?.filter(product => category === "All" || category === product.category).length / itemsPerPage)).keys()].map(number => (
             <button key={number + 1} onClick={() => paginate(number + 1)} className={`mx-1 px-3 py-1 border border-gray-300 rounded-md ${currentPage === number + 1 ? 'bg-gray-300' : ''}`}>{number + 1}</button>
           ))}
         </div>
+
+
       </Wrapper>
     </div>
   );
