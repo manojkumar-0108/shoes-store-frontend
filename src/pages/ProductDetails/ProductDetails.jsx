@@ -21,7 +21,7 @@ function ProductDetails() {
             <div className="w-full md:py-20">
                 <Wrapper>
 
-                    {shoes.map((shoe) => {
+                    {shoes.length > 0 && shoes.map((shoe) => {
                         if (shoe.id == productId) {
                             return (
                                 <div className="flex flex-col lg:flex-row md:px-10 gap-[50px] lg:gap-[100px]" key={shoe.id}>

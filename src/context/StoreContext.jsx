@@ -2,6 +2,8 @@ import { createContext, useEffect, useState } from "react";
 
 import { API_END_POINTS, shoesCategories } from "../assets";
 const { CARTS, SHOES } = API_END_POINTS;
+import { toast } from 'react-toastify';
+
 
 import axiosInstance from "../helpers/axiosInstance";
 
@@ -24,10 +26,14 @@ const StoreContextProvider = (props) => {
         }
         if (token) {
             try {
-                await axiosInstance.post(
+                const response = await axiosInstance.post(
                     `${CARTS}/products/${itemId}`,
                     {},
                     { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
+
+                if (response.data.success === false) {
+                    toast.error(response.data.message);
+                }
             } catch (error) {
                 console.log("Error : ", error);
             }
@@ -40,7 +46,11 @@ const StoreContextProvider = (props) => {
         if (token) {
 
             try {
-                await axiosInstance.delete(`${CARTS}/products/${itemId}`, { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
+                const response = await axiosInstance.delete(`${CARTS}/products/${itemId}`, { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
+
+                if (response.data.success === false) {
+                    toast.error(response.data.message);
+                }
             } catch (error) {
                 console.log("Error : ", error);
             }
@@ -64,7 +74,11 @@ const StoreContextProvider = (props) => {
 
         try {
             const response = await axiosInstance.get(`${SHOES}`, {});
-            setShoes(response.data.data)
+            setShoes(response.data.data);
+
+            if (response.data.success === false) {
+                toast.error(response.data.message);
+            }
         } catch (error) {
             console.log("Error : ", error);
         }
@@ -76,8 +90,12 @@ const StoreContextProvider = (props) => {
         try {
             const response = await axiosInstance.get(`${CARTS}/products`, { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
             setCartItems(response.data.data);
+
+            if (response.data.success === false) {
+                toast.error(response.data.message);
+            }
         } catch (error) {
-            console.log("Error : ", error);
+            console.log("Error: ", error);
         }
     }
 

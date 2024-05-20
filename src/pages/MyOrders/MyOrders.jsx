@@ -2,9 +2,11 @@ import { useContext, useEffect, useState } from 'react'
 import './MyOrders.css'
 
 import axiosInstance from '../../helpers/axiosInstance';
+import { toast } from 'react-toastify';
 
 import { StoreContext } from '../../context/StoreContext';
 import images from '../../assets/images';
+
 
 import { API_END_POINTS } from '../../assets';
 import currencyFormatter from '../../helpers/currency.formatter';
@@ -21,7 +23,11 @@ const MyOrders = () => {
       const response = await axiosInstance.get(
         `${API_END_POINTS.ORDERS}`,
         { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
-      setData(response.data.data)
+      setData(response.data.data);
+
+      if (response.data.success === false) {
+        toast.error(response.data.message);
+      }
     } catch (error) {
       console.log("Error : ", error);
     }
@@ -37,7 +43,7 @@ const MyOrders = () => {
     <div className='my-orders'>
       <h2>My Orders</h2>
       <div className="container">
-        {data.map((order, index) => {
+        {data.length > 0 && data.map((order, index) => {
           return (
             <div key={index} className='my-orders-order'>
               <img src={images.parcelIcon} alt="" />
