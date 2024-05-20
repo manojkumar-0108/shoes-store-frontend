@@ -1,7 +1,7 @@
 
 import images from './images/index';
 
-export const BACKEND_BASE_URL = 'https://ec2-15-206-128-33.ap-south-1.compute.amazonaws.com/'
+export const BACKEND_BASE_URL = 'https://13.201.77.73/'
 
 export const assets = {
     images,
