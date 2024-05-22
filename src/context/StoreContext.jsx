@@ -18,12 +18,13 @@ const StoreContextProvider = (props) => {
 
     const [ordersData, setOrdersData] = useState([]);
 
-    const fetchOrders = async () => {
+    const fetchOrders = async (token) => {
 
         try {
             const response = await axiosInstance.get(
                 `${API_END_POINTS.ORDERS}`,
                 { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
+
             setOrdersData(response.data.data);
 
             if (response.data.success === false) {
@@ -121,9 +122,10 @@ const StoreContextProvider = (props) => {
         async function loadData() {
             await fetchShoesList();
             if (localStorage.getItem("token")) {
-                setToken(localStorage.getItem("token"))
-                await loadCartData(localStorage.getItem("token"));
-                await fetchOrders();
+                const userToken = localStorage.getItem("token");
+                setToken(userToken)
+                await loadCartData(userToken);
+                await fetchOrders(userToken);
             }
         }
         loadData();
