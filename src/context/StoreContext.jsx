@@ -150,7 +150,8 @@ const StoreContextProvider = (props) => {
         category,
         setCategory,
         ordersData,
-        setOrdersData
+        setOrdersData,
+        appLoading
     };
 
     return (
