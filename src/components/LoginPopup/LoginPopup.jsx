@@ -18,6 +18,8 @@ const LoginPopup = ({ setShowLogin }) => {
 
     const { setToken, loadCartData } = useContext(StoreContext)
     const [currState, setCurrState] = useState("Sign Up");
+    const [isLoading, setIsLoading] = useState(false); // Add loading state
+
 
     const navigate = useNavigate();
 
@@ -34,7 +36,8 @@ const LoginPopup = ({ setShowLogin }) => {
     }
 
     const onLogin = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        setIsLoading(true);
 
         try {
             let newURL = USERS;
@@ -59,6 +62,8 @@ const LoginPopup = ({ setShowLogin }) => {
             }
         } catch (error) {
             console.log(error);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -89,6 +94,17 @@ const LoginPopup = ({ setShowLogin }) => {
                     : <p>Already have an account? <span onClick={() => setCurrState('Login')}>Login here</span></p>
                 }
             </form>
+
+            {isLoading && (
+                <div className="loading-overlay">
+                    <div className="spinner-container">
+                        <div className="spinner"></div>
+                        <div>Processing...</div>
+                    </div>
+                </div>
+            )}
+
+
         </div>
     )
 }
