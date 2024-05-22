@@ -1,7 +1,7 @@
 /**
  * packages import
  */
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { ToastContainer } from 'react-toastify';
 import { Route, Routes } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,6 +18,7 @@ import PlaceOrder from './pages/PlaceOrder/PlaceOrder';
 import MyOrders from './pages/MyOrders/MyOrders';
 import Verify from './pages/Verify/Verify';
 import ProductDetails from './pages/ProductDetails/ProductDetails';
+import { StoreContext } from './context/StoreContext';
 
 
 /**
@@ -27,6 +28,20 @@ import ProductDetails from './pages/ProductDetails/ProductDetails';
 function App() {
 
   const [showLogin, setShowLogin] = useState(false);
+  const { appLoading } = useContext(StoreContext);
+
+  if (appLoading) {
+    return (
+      <div className='app'>
+        <div className="loading-overlay">
+          <div className="spinner-container">
+            <div className="spinner"></div>
+            <div>Loading...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

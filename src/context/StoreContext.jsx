@@ -15,6 +15,8 @@ const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("");
     const [category, setCategory] = useState("All");
+    const [appLoading, setAppLoading] = useState(false);
+
 
     const [ordersData, setOrdersData] = useState([]);
 
@@ -92,6 +94,7 @@ const StoreContextProvider = (props) => {
     const fetchShoesList = async () => {
 
         try {
+            setAppLoading(true);
             const response = await axiosInstance.get(`${SHOES}`, {});
             setShoes(response.data.data);
 
@@ -100,6 +103,8 @@ const StoreContextProvider = (props) => {
             }
         } catch (error) {
             console.log("Error : ", error);
+        } finally {
+            setAppLoading(false);
         }
 
     }
