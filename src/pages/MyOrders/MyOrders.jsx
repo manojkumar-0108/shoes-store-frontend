@@ -30,7 +30,6 @@ const MyOrders = () => {
               <p>{currencyFormatter(order.amount)}.00</p>
               <p>Items: {order.items.length}</p>
               <p><span>&#x25cf;</span> <b>{order.order_status}</b></p>
-              <button>Track Order</button>
             </div>
           )
         })}
