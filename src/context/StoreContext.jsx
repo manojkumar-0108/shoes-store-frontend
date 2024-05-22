@@ -133,16 +133,17 @@ const StoreContextProvider = (props) => {
         shoes,
         shoesCategories,
         cartItems,
+        setCartItems,
         addToCart,
         removeFromCart,
         getTotalCartAmount,
         token,
         setToken,
         loadCartData,
-        setCartItems,
         category,
         setCategory,
-        ordersData
+        ordersData,
+        setOrdersData
     };
 
     return (

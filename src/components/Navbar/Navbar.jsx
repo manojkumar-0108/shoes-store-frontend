@@ -16,7 +16,7 @@ import { FiBox } from "react-icons/fi";
 const Navbar = ({ setShowLogin }) => {
 
   const [menu, setMenu] = useState("home");
-  const { getTotalCartAmount, token, setToken, setCategory } = useContext(StoreContext);
+  const { getTotalCartAmount, token, setToken, setCategory, setOrdersData, setCartItems } = useContext(StoreContext);
   const navigate = useNavigate();
 
   const handleMenuClick = (menu, path) => {
@@ -28,7 +28,10 @@ const Navbar = ({ setShowLogin }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setToken("");
-    navigate('/')
+    setOrdersData([]);
+    setCartItems({});
+    navigate('/');
+
   }
 
 
