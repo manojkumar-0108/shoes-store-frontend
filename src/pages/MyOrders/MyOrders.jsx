@@ -1,49 +1,20 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import './MyOrders.css'
-
-import axiosInstance from '../../helpers/axiosInstance';
-import { toast } from 'react-toastify';
 
 import { StoreContext } from '../../context/StoreContext';
 import images from '../../assets/images';
 
-
-import { API_END_POINTS } from '../../assets';
 import currencyFormatter from '../../helpers/currency.formatter';
 
 
 const MyOrders = () => {
 
-  const [data, setData] = useState([]);
-  const { token } = useContext(StoreContext);
-
-  const fetchOrders = async () => {
-
-    try {
-      const response = await axiosInstance.get(
-        `${API_END_POINTS.ORDERS}`,
-        { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
-      setData(response.data.data);
-
-      if (response.data.success === false) {
-        toast.error(response.data.message);
-      }
-    } catch (error) {
-      console.log("Error : ", error);
-    }
-  }
-
-  useEffect(() => {
-    if (token) {
-      fetchOrders();
-    }
-  }, [token])
-
+  const { ordersData } = useContext(StoreContext);
   return (
     <div className='my-orders'>
       <h2>My Orders</h2>
       <div className="container">
-        {data.length > 0 && data.map((order, index) => {
+        {ordersData.length > 0 && ordersData.map((order, index) => {
           return (
             <div key={index} className='my-orders-order'>
               <img src={images.parcelIcon} alt="" />
