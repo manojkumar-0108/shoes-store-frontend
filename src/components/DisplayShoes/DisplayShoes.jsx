@@ -29,7 +29,7 @@ const DisplayShoes = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = shoes.filter(product => category === "All" || category === product.category)
+  const currentItems = shoes?.filter(product => category === "All" || category === product.category)
     .slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -53,7 +53,7 @@ const DisplayShoes = () => {
 
         {/* products grid start */}
         <div className="grid grid-cols-1 md:grid-cols- lg:grid-cols-4 gap-5 my-14 px-5 md:px-0">
-          {currentItems.map((product) => (
+          {currentItems && currentItems.map((product) => (
             <ProductCard key={product.id} data={product} />
           ))}
         </div>

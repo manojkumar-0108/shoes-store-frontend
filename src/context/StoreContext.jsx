@@ -96,6 +96,7 @@ const StoreContextProvider = (props) => {
         try {
             setAppLoading(true);
             const response = await axiosInstance.get(`${SHOES}`, {});
+
             setShoes(response.data.data);
 
             if (response.data.success === false) {
