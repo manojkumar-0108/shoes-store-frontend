@@ -28,10 +28,6 @@ const StoreContextProvider = (props) => {
                 { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
 
             setOrdersData(response.data.data);
-
-            if (response.data.success === false) {
-                toast.error(response.data.message);
-            }
         } catch (error) {
             console.log("Error : ", error);
         }
@@ -96,12 +92,8 @@ const StoreContextProvider = (props) => {
         try {
             setAppLoading(true);
             const response = await axiosInstance.get(`${SHOES}`, {});
-
             setShoes(response.data.data);
 
-            if (response.data.success === false) {
-                toast.error(response.data.message);
-            }
         } catch (error) {
             console.log("Error : ", error);
         } finally {
@@ -115,10 +107,6 @@ const StoreContextProvider = (props) => {
         try {
             const response = await axiosInstance.get(`${CARTS}/products`, { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
             setCartItems(response.data.data);
-
-            if (response.data.success === false) {
-                toast.error(response.data.message);
-            }
         } catch (error) {
             console.log("Error: ", error);
         }
@@ -135,7 +123,7 @@ const StoreContextProvider = (props) => {
             }
         }
         loadData();
-    }, [])
+    }, [token])
 
     const contextValue = {
         shoes,
