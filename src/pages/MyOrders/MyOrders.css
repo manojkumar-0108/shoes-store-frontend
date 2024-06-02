@@ -11,8 +11,9 @@
 
 .my-orders-order {
     display: grid;
-    grid-template-columns: 0.5fr 3fr 1fr 1fr 2fr;
+    grid-template-columns: 0.5fr 4fr 1fr 1fr 1fr 2fr;
     align-items: center;
+    justify-items: center;
     gap: 30px;
     font-size: 14px;
     padding: 10px 20px;
@@ -33,6 +34,25 @@
     color: #454545;
 }
 
+.failed-payment,
+.success-payment {
+    font-size: 13px;
+    font-weight: 400;
+    width: 120px;
+    text-align: center;
+    padding: 5px;
+    border: hidden;
+    border-radius: 5px;
+    background-color: rgb(28, 31, 33);
+}
+
+.failed-payment {
+    color: rgb(240, 36, 36);
+}
+
+.success-payment {
+    color: rgb(100, 255, 100);
+}
 
 @media (max-width:900px) {
     .my-orders-order {

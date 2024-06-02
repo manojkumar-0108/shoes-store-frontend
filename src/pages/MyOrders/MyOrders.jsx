@@ -29,6 +29,9 @@ const MyOrders = () => {
               })}</p>
               <p>{currencyFormatter(order.amount)}.00</p>
               <p>Items: {order.items.length}</p>
+              <p className={(order.payment == 'failed') ? 'failed-payment' : 'success-payment'}>
+                Payment {order.payment}
+              </p>
               <p><span>&#x25cf;</span> <b>{order.order_status}</b></p>
             </div>
           )
