@@ -17,7 +17,6 @@ const StoreContextProvider = (props) => {
     const [category, setCategory] = useState("All");
     const [appLoading, setAppLoading] = useState(false);
 
-
     const [ordersData, setOrdersData] = useState([]);
 
     const fetchOrders = async (token) => {
@@ -28,8 +27,11 @@ const StoreContextProvider = (props) => {
                 { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
 
             setOrdersData(response.data.data);
+            if (!response.data.success) {
+                console.log(response.data.message);
+            }
         } catch (error) {
-            console.log("Error : ", error);
+            console.log("Error : ", error?.data?.message);
         }
     }
 
@@ -49,10 +51,11 @@ const StoreContextProvider = (props) => {
                     { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
 
                 if (response.data.success === false) {
+                    console.log(response.data.message);
                     toast.error(response.data.message);
                 }
             } catch (error) {
-                console.log("Error : ", error);
+                console.log("Error : ", error?.data?.message);
             }
 
         }
@@ -66,10 +69,11 @@ const StoreContextProvider = (props) => {
                 const response = await axiosInstance.delete(`${CARTS}/products/${itemId}`, { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
 
                 if (response.data.success === false) {
+                    console.log(response.data.message);
                     toast.error(response.data.message);
                 }
             } catch (error) {
-                console.log("Error : ", error);
+                console.log("Error : ", error?.data?.message);
             }
 
         }
@@ -94,8 +98,12 @@ const StoreContextProvider = (props) => {
             const response = await axiosInstance.get(`${SHOES}`, {});
             setShoes(response.data.data);
 
+            if (!response.data.success) {
+                console.log(response.data.message);
+            }
+
         } catch (error) {
-            console.log("Error : ", error);
+            console.log("Error : ", error?.data?.message);
         } finally {
             setAppLoading(false);
         }
@@ -107,8 +115,12 @@ const StoreContextProvider = (props) => {
         try {
             const response = await axiosInstance.get(`${CARTS}/products`, { headers: { 'x-access-token': token, 'Content-Type': 'multipart/form-data' } });
             setCartItems(response.data.data);
+
+            if (!response.data.success) {
+                console.log(response.data.message);
+            }
         } catch (error) {
-            console.log("Error: ", error);
+            console.log("Error -> ", error);
         }
     }
 

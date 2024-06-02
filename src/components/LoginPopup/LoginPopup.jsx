@@ -49,8 +49,6 @@ const LoginPopup = ({ setShowLogin }) => {
             }
             const response = await axiosInstance.post(newURL, data);
 
-            console.log("Login Response : ", response);
-
             if (response.data.success) {
                 setToken(response.data.data);
                 localStorage.setItem("token", response.data.data);
@@ -63,7 +61,7 @@ const LoginPopup = ({ setShowLogin }) => {
                 toast.error(response.data.message)
             }
         } catch (error) {
-            console.log(error);
+            console.log("Error : ", error?.data?.message);
         } finally {
             setIsLoading(false);
         }
