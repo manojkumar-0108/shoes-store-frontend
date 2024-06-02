@@ -13,8 +13,7 @@
     display: grid;
     grid-template-columns: 0.5fr 4fr 1fr 1fr 1fr 2fr;
     align-items: center;
-    justify-items: center;
-    gap: 30px;
+    gap: 40px;
     font-size: 14px;
     padding: 10px 20px;
     color: #454545;
