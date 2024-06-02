@@ -23,13 +23,16 @@ const DisplayShoes = () => {
     } else if (window.innerWidth < 1024) {
       setItemsPerPage(6);
     } else {
-      setItemsPerPage(12)
+      setItemsPerPage(12);
     }
   };
 
+  // Ensure shoes is an array before performing operations
+  const validShoes = Array.isArray(shoes) ? shoes : [];
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = shoes?.filter(product => category === "All" || category === product.category)
+  const currentItems = validShoes.filter(product => category === "All" || category === product.category)
     .slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
@@ -50,22 +53,19 @@ const DisplayShoes = () => {
           </div>
         </div>
 
-
         {/* products grid start */}
         <div className="grid grid-cols-1 md:grid-cols- lg:grid-cols-4 gap-5 my-14 px-5 md:px-0">
-          {currentItems && currentItems.map((product) => (
+          {currentItems.map((product) => (
             <ProductCard key={product.id} data={product} />
           ))}
         </div>
 
-
         {/* pagination controls */}
         <div className="flex justify-center my-5">
-          {[...Array(Math.ceil(shoes?.filter(product => category === "All" || category === product.category).length / itemsPerPage)).keys()].map(number => (
+          {[...Array(Math.ceil(validShoes.filter(product => category === "All" || category === product.category).length / itemsPerPage)).keys()].map(number => (
             <button key={number + 1} onClick={() => paginate(number + 1)} className={`mx-1 px-3 py-1 border border-gray-300 rounded-md ${currentPage === number + 1 ? 'bg-gray-300' : ''}`}>{number + 1}</button>
           ))}
         </div>
-
 
       </Wrapper>
     </div>
