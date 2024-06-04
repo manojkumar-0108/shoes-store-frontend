@@ -20,6 +20,7 @@ const Verify = () => {
         { success }
       );
 
+      console.log("Response : ", response.data);
       if (response.data.success) {
         navigate("/myorders");
         toast.success('Order placed successfully');
